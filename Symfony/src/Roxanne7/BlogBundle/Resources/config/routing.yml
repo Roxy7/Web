@@ -1,0 +1,30 @@
+# src/Roxanne7/BlogBundle/Resources/config/routing.yml
+
+
+Roxanne7blog_accueil:
+    path:      /{page}
+    defaults:  { _controller: Roxanne7BlogBundle:Blog:index, page : 1 }
+    requirements:
+            page: \d*
+    
+Roxanne7blog_voir:
+    path:      /article/{id}
+    defaults:  { _controller: Roxanne7BlogBundle:Blog:voir }
+    requirements:
+        id: \d+
+    
+Roxanne7blog_ajouter:
+    path:      /ajouter
+    defaults:  { _controller: Roxanne7BlogBundle:Blog:ajouter }
+    
+Roxanne7blog_modifier:
+    path:      /modifier/{id}
+    defaults:  { _controller: Roxanne7BlogBundle:Blog:ajouter }
+    requirements:
+        id: \d+
+    
+Roxanne7blog_supprimer:
+    path:      /supprimer/{id}
+    defaults:  { _controller: Roxanne7BlogBundle:Blog:ajouter }
+    requirements:
+        id: \d+
