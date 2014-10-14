@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('Roxanne7UserBundle:Default:index.html.twig', array('name' => $name));
     }
+    
+    public function loginAction()
+    {
+    	return $this->render('Roxanne7UserBundle:Default:login.html.twig');
+    }
 }

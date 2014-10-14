@@ -1,3 +1,7 @@
 Roxanne7_user_homepage:
   path: /hello/{name}
   defaults:  {_controller: "Roxanne7UserBundle:Default:index" }
+  
+Roxanne7_user_login:
+  path: /user/login
+  defaults:  {_controller: "Roxanne7UserBundle:Default:login" }
