@@ -1,4 +1,0 @@
-roxanne7_blog:
-    resource: "@Roxanne7BlogBundle/Resources/config/routing.yml"
-    prefix:   /blog
-
