@@ -89,7 +89,7 @@ class User
      *
      * @ORM\Column(name="avatar", type="string", length=512)
      */
-    private $avatar;
+    private $avatar = '';
 
     /**
      * @ORM\Column(name="admin", type="boolean")
