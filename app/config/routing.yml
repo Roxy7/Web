@@ -1,3 +1,7 @@
+roxanne7_vinnity:
+    resource: "@Roxanne7VinnityBundle/Resources/config/routing.yml"
+    prefix:   /
+
 roxanne7_user:
     resource: "@Roxanne7UserBundle/Resources/config/routing.yml"
     prefix:   /user

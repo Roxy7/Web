@@ -4,30 +4,25 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>{% block title %}OC Plateforme{% endblock %}</title>
+  <title>{% block title %}Vinnity - Alpha 1.0{% endblock %}</title>
 
   {% block stylesheets %}
     {# On charge le CSS de bootstrap depuis le site directement #}
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {# <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> #}
+	{% stylesheets '../app/Resources/public/css/*' %}
+   	 <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+  	{% endstylesheets %}
   {% endblock %}
 </head>
 
 <body>
   <div class="container">
-    <div id="header" class="jumbotron">
-      <h1>Ma plateforme d'annonces</h1>
-      <p>
-        Ce projet est propulsé par Symfony2,
-        et construit grace au MOOC OpenClassrooms et SensioLabs.
-      </p>
-      <p>
-        <a class="btn btn-primary btn-lg" href="http://fr.openclassrooms.com/informatique/cours/developpez-votre-site-web-avec-le-framework-symfony2">
-          Participer au MOOC !
-        </a>
-      </p>
-    </div>
+
+  {% block header %}
+	{{ render(controller("Roxanne7VinnityBundle:Global:header")) }}
+  {% endblock %}
 
     <div class="row">
       <div id="menu" class="col-md-3">
@@ -46,17 +41,23 @@
       </div>
     </div>
 
-    <hr>
 
-    <footer>
-      <p>Roxanne7_ © {{ 'now'|date('Y') }} and beyond.</p>
-    </footer>
+
   </div>
 
+    {% block footer %}
+    	{{ render(controller("Roxanne7VinnityBundle:Global:footer")) }}
+    {% endblock %}
+  
   {% block javascripts %}
-    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalit�s du bootstrap Twitter #}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalit�s du bootstrap Twitter
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    #}
+	{% javascripts '../app/Resources/public/js/*' %}
+    	<script type="text/javascript" src="{{ asset_url }}"></script>
+  	{% endjavascripts %}
+    
   {% endblock %}
 
 </body>
