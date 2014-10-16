@@ -92,18 +92,6 @@ class User
     private $active;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="avatar", type="string", length=512)
-     */
-    private $avatar = '';
-
-    /**
-     * @ORM\Column(name="admin", type="boolean")
-     */
-    private $admin = false;
-
-    /**
      * Get id
      *
      * @return integer 
@@ -319,29 +307,6 @@ class User
     {
         return $this->active;
     }
-
-    /**
-     * Set avatar
-     *
-     * @param string $avatar
-     * @return User
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * Get avatar
-     *
-     * @return string 
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
     
     public function __construct()
     {
@@ -351,29 +316,6 @@ class User
     	$this->wantMail = 1;
     	$this->external = 0;
      }
-
-    /**
-     * Set admin
-     *
-     * @param boolean $admin
-     * @return User
-     */
-    public function setAdmin($admin)
-    {
-        $this->admin = $admin;
-
-        return $this;
-    }
-
-    /**
-     * Get admin
-     *
-     * @return boolean 
-     */
-    public function getAdmin()
-    {
-        return $this->admin;
-    }
 
     /**
      * Set profile

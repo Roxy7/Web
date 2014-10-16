@@ -24,14 +24,14 @@ class Profile
     /**
      * @var string
      *
-     * @ORM\Column(name="avatar", type="string", length=255)
+     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
      */
     private $avatar;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sex", type="string", length=1)
+     * @ORM\Column(name="sex", type="string", length=1, nullable=true)
      */
     private $sex;
 
