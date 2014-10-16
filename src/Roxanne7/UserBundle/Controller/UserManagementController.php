@@ -16,7 +16,8 @@ class UserManagementController extends Controller
     
     public function loginAction()
     {
-    	return $this->render('Roxanne7UserBundle:Default:login.html.twig');
+    	$user = $this->getUser(1);
+    	return $this->render('Roxanne7UserBundle:Default:login.html.twig',array('pseudo' => $user->getPseudo()));
     }
     
     public function addUser()
@@ -38,5 +39,14 @@ class UserManagementController extends Controller
     	// Étape 2 : On « flush » tout ce qui a été persisté avant
     	$em->flush();
     	
+    }
+    
+    public function getUser($id)
+    {
+    	$repository = $this->getDoctrine()->getManager()->getRepository('Roxanne7UserBundle:User');
+    	
+    	$user = $repository->find($id);
+    	
+    	return $user;
     }
 }
