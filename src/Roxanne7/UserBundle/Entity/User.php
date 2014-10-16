@@ -12,6 +12,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
+	
+	/**
+	 * @ORM\OneToOne(targetEntity="Roxanne7\UserBundle\Entity\Profile", cascade={"persist"})
+	 
+	 */
+	private $profile;
+	
     /**
      * @var integer
      *
@@ -366,5 +373,28 @@ class User
     public function getAdmin()
     {
         return $this->admin;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Roxanne7\UserBundle\Entity\Profile $profile
+     * @return User
+     */
+    public function setProfile(\Roxanne7\UserBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Roxanne7\UserBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }
