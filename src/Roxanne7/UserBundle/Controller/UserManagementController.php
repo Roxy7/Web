@@ -11,14 +11,20 @@ class UserManagementController extends Controller
 
     public function registerAction()
     {
-    	$this->addUser();
+    	
     	return $this->render('Roxanne7UserBundle:Default:register.html.twig');
     }
     
     public function loginAction()
     {
-    	$user = $this->getUser(1);
-    	return $this->render('Roxanne7UserBundle:Default:login.html.twig',array('pseudo' => $user->getPseudo()));
+    	//$user = $this->getUser(1);
+    	//return $this->render('Roxanne7UserBundle:Default:login.html.twig',array('uid' => $uid));
+    	return $this->render('Roxanne7UserBundle:Default:login.html.twig');
+    }
+    
+    public function profileAction($user)
+    {
+    	return $this->render('Roxanne7UserBundle:Default:profile.html.twig',array('user' => $user));
     }
     
     public function addUser()
@@ -40,6 +46,7 @@ class UserManagementController extends Controller
     	// On récupère l'EntityManager
     	$em = $this->getDoctrine()->getManager();
     	
+    	
     	// Étape 1 : On « persiste » l'entité
     	$em->persist($user);
     	
@@ -48,11 +55,12 @@ class UserManagementController extends Controller
     	
     }
     
-    public function getUser($id)
+    public function getUser()
     {
-    	$repository = $this->getDoctrine()->getManager()->getRepository('Roxanne7UserBundle:User');
     	
-    	$user = $repository->find($id);
+    	
+    	//$repository = $this->getDoctrine()->getManager()->getRepository('Roxanne7UserBundle:User');
+    	//$user = $this->$repository->find($id);
     	
     	return $user;
     }

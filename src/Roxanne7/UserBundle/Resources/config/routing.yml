@@ -6,3 +6,7 @@ Roxanne7_user_login:
   path: /login
   defaults:  {_controller: "Roxanne7UserBundle:UserManagement:login" }
   
+Roxanne7_user_profile:
+  path: /profile/{user}
+  defaults:  {_controller: "Roxanne7UserBundle:UserManagement:profile", user: -1 }
+    

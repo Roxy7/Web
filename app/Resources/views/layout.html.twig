@@ -10,7 +10,7 @@
 
   {% block stylesheets %}
     {# On charge le CSS de bootstrap depuis le site directement #}
-    {# <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	{% stylesheets '../app/Resources/public/css/*' %}
    	 <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
   	{% endstylesheets %}
@@ -18,12 +18,14 @@
 </head>
 
 <body>
-  <div class="container">
+  {# <div class="container"> #}
 
   {% block header %}
 	{{ render(controller("Roxanne7VinnityBundle:Global:header")) }}
   {% endblock %}
 
+  
+  {% block menu %}
     <div class="row">
       <div id="menu" class="col-md-3">
         <h3>Le menu</h3>
@@ -31,10 +33,11 @@
           <li><a href="#">Accueil</a></li>
           <li><a href="{{ path('Roxanne7_user_login') }}">Login</a></li>
           <li><a href="{{ path('Roxanne7_user_register') }}">Register</a></li>
+          <li><a href="{{ path('Roxanne7_user_profile') }}">Profile</a></li>
         </ul>
-
-
       </div>
+   {% endblock %}
+      
       <div id="content" class="col-md-9">
         {% block body %}
         {% endblock %}
@@ -43,7 +46,7 @@
 
 
 
-  </div>
+  {# </div> #}
 
     {% block footer %}
     	{{ render(controller("Roxanne7VinnityBundle:Global:footer")) }}
