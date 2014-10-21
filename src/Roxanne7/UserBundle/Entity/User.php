@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Roxanne7\UserBundle\Entity\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User
 {
@@ -339,4 +340,15 @@ class User
     {
         return $this->profile;
     }
+    
+    /**
+     * @ORM\PreUpdate
+     */
+    public function modificationDate(){
+    	$this->setModificationDate(new \Datetime());
+    }
+    
+
+
 }
+
