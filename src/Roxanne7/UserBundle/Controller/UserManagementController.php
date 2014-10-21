@@ -22,8 +22,12 @@ class UserManagementController extends Controller
     	return $this->render('Roxanne7UserBundle:Default:login.html.twig');
     }
     
-    public function profileAction($user)
+    public function profileAction($userId)
     {
+    	
+    	$repository = $this->getDoctrine()->getManager()->getRepository('Roxanne7UserBundle:User')	;
+    	$user = $repository->find($userId);
+    	
     	return $this->render('Roxanne7UserBundle:Default:profile.html.twig',array('user' => $user));
     }
     

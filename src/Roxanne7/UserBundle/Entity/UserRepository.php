@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+	public function findActive()
+	{
+		  $qb = $this->createQueryBuilder('a');
+		
+		  $qb->where('a.active = :active')->setParameter('active', 1);
+		
+		  return $qb->getQuery()->getResult();
+	}
+	
+
+
 }
