@@ -15,4 +15,10 @@ class GlobalController extends Controller
     {
     	return $this->render('Roxanne7VinnityBundle:Design:footer.html.twig');
     }
+    
+    public function welcomeAction()
+    {
+    	return $this->render('Roxanne7VinnityBundle:Design:welcome.html.twig');
+    }
+    
 }

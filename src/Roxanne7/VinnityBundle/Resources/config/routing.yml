@@ -1,0 +1,3 @@
+Roxanne7_vinnity_index:
+  path: /
+  defaults:  {_controller: "Roxanne7VinnityBundle:Global:welcome" }
