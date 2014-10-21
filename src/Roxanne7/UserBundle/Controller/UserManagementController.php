@@ -11,8 +11,8 @@ class UserManagementController extends Controller
 
     public function registerAction()
     {
-    	
-    	return $this->render('Roxanne7UserBundle:Default:register.html.twig');
+    	return $this->addUser();
+    	//return $this->render('Roxanne7UserBundle:Default:register.html.twig');
     }
     
     public function loginAction()
@@ -30,7 +30,29 @@ class UserManagementController extends Controller
     	
     	return $this->render('Roxanne7UserBundle:Default:profile.html.twig',array('user' => $user));
     }
+
+    public function addUser()
+    {
+    	$user = new User();
+    	$formBuilder = $this->get('form.factory')->createBuilder('form', $user);
+    	$formBuilder
+	    	->add('pseudo',      'text')
+	    	->add('pass',     'text')
+	    	->add('mail',   'text')
+	    	//->add('wantMail',	'checkbox')
+	    	->add('save',      'submit')
+    	;
+    	$form = $formBuilder->getForm();
+    	
+    	// On passe la méthode createView() du formulaire à la vue
+    	// afin qu'elle puisse afficher le formulaire toute seule
+    	return $this->render('Roxanne7UserBundle:Default:register.html.twig', array(
+    			'form' => $form->createView(),
+    			));
+    }
     
+    
+    /*
     public function addUser()
     {
     	$user = new User();
@@ -58,7 +80,7 @@ class UserManagementController extends Controller
     	$em->flush();
     	
     }
-    
+    */
     public function getUser()
     {
     	
