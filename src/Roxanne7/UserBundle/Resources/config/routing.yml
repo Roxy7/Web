@@ -1,14 +1,11 @@
 Roxanne7_user_register:
   path: /register
   defaults:  {_controller: "Roxanne7UserBundle:UserManagement:register" }
-  
-Roxanne7_user_login:
-  path: /login
-  defaults:  {_controller: "Roxanne7UserBundle:UserManagement:login" }
+ 
   
 Roxanne7_user_profile:
   path: /profile/{userId}
-  defaults:  {_controller: "Roxanne7UserBundle:UserManagement:profile", userId: -1 }
+  defaults:  {_controller: "Roxanne7UserBundle:UserManagement:profile", userId: 3 }
   requirements:
       userId: \d+
   

@@ -6,3 +6,12 @@ roxanne7_user:
     resource: "@Roxanne7UserBundle/Resources/config/routing.yml"
     prefix:   /user
 
+login:
+    pattern:   /login
+    defaults:  { _controller: "Roxanne7UserBundle:Security:login" }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout

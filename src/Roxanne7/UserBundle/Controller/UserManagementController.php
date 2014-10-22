@@ -6,6 +6,8 @@ use Roxanne7\UserBundle\Entity\User;
 use Roxanne7\UserBundle\Entity\Profile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class UserManagementController extends Controller
 {
@@ -55,9 +57,11 @@ class UserManagementController extends Controller
     	return $this->render('Roxanne7UserBundle:Default:login.html.twig');
     }
     
+    /**
+     * @Security("has_role('ROLE_AUTEUR')")
+     */
     public function profileAction($userId)
     {
-    	
     	$repository = $this->getDoctrine()->getManager()->getRepository('Roxanne7UserBundle:User')	;
     	$user = $repository->find($userId);
     	
