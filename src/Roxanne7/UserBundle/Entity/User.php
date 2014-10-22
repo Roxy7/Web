@@ -4,6 +4,7 @@ namespace Roxanne7\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Roxanne7\UserBundle\Entity\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class User
+class User implements UserInterface
 {
 	
 	/**
@@ -31,21 +32,24 @@ class User
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pseudo", type="string", length=100)
-     * @Assert\Length(min=3, minMessage="Le pseudo doit faire au moins {{ limit }} caractères.")
-     * @Assert\Length(max=3, maxMessage="Le pseudo doit faire au plus {{ limit }} caractères.")
+     * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
-    private $pseudo;
-
+    private $username;
+    
     /**
-     * @var string
-     *
-     * @ORM\Column(name="pass", type="string", length=100)
-     * @Assert\NotBlank
+     * @ORM\Column(name="password", type="string", length=255)
      */
-    private $pass;
+    private $password;
+    
+    /**
+     * @ORM\Column(name="salt", type="string", length=255)
+     */
+    private $salt;
+    
+    /**
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles = array();
 
     /**
      * @var string
@@ -255,6 +259,10 @@ class User
     	$this->wantMail = true;
     	$this->external = false;
     	$this->cle = md5(microtime(TRUE)*100000);
+    	// On ne se sert pas du sel pour l'instant
+    	$this->setSalt('');
+    	// On définit uniquement le role ROLE_USER qui est le role de base
+    	$this->setRoles(array('ROLE_USER'));
      }
 
     /**
@@ -354,5 +362,101 @@ class User
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string 
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * Set roles
+     *
+     * @param array $roles
+     * @return User
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return array 
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+    
+    public function eraseCredentials()
+    {
     }
 }

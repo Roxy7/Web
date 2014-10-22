@@ -17,8 +17,8 @@ class UserManagementController extends Controller
     	$user = new User();
     	$formBuilder = $this->get('form.factory')->createBuilder('form', $user);
     	$formBuilder
-	    	->add('pseudo',      'text')
-	    	->add('pass',     'password')
+	    	->add('username',      'text')
+	    	->add('password',     'password')
 	    	->add('mail',   'email')
 	    	->add('wantMail',	'checkbox')
 	    	->add('save',      'submit')
