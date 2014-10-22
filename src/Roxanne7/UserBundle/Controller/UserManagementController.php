@@ -5,14 +5,47 @@ namespace Roxanne7\UserBundle\Controller;
 use Roxanne7\UserBundle\Entity\User;
 use Roxanne7\UserBundle\Entity\Profile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class UserManagementController extends Controller
 {
 
-    public function registerAction()
+    public function registerAction(Request $request)
     {
-    	return $this->addUser();
-    	//return $this->render('Roxanne7UserBundle:Default:register.html.twig');
+    	$user = new User();
+    	$formBuilder = $this->get('form.factory')->createBuilder('form', $user);
+    	$formBuilder
+	    	->add('pseudo',      'text')
+	    	->add('pass',     'password')
+	    	->add('mail',   'email')
+	    	->add('wantMail',	'checkbox')
+	    	->add('save',      'submit')
+    	;
+    	$form = $formBuilder->getForm();
+    	
+    	// On fait le lien Requête <-> Formulaire
+    	// À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
+    	$form->handleRequest($request);
+    	
+    	// On vérifie que les valeurs entrées sont correctes
+    	// (Nous verrons la validation des objets en détail dans le prochain chapitre)
+    	if ($form->isValid()) {
+    		// On l'enregistre notre objet $advert dans la base de données, par exemple
+    		$em = $this->getDoctrine()->getManager();
+    		$em->persist($user);
+    		$em->flush();
+    	
+    		$request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+    	
+    		// On redirige vers la page de visualisation de l'annonce nouvellement créée
+    		return $this->redirect($this->generateUrl('Roxanne7_user_profile', array('userId' => $user->getId())));
+    	}
+    	
+    	// On passe la méthode createView() du formulaire à la vue
+    	// afin qu'elle puisse afficher le formulaire toute seule
+    	return $this->render('Roxanne7UserBundle:Default:register.html.twig', array(
+    			'form' => $form->createView(),
+    			));
     }
     
     public function loginAction()
@@ -31,56 +64,7 @@ class UserManagementController extends Controller
     	return $this->render('Roxanne7UserBundle:Default:profile.html.twig',array('user' => $user));
     }
 
-    public function addUser()
-    {
-    	$user = new User();
-    	$formBuilder = $this->get('form.factory')->createBuilder('form', $user);
-    	$formBuilder
-	    	->add('pseudo',      'text')
-	    	->add('pass',     'text')
-	    	->add('mail',   'text')
-	    	//->add('wantMail',	'checkbox')
-	    	->add('save',      'submit')
-    	;
-    	$form = $formBuilder->getForm();
-    	
-    	// On passe la méthode createView() du formulaire à la vue
-    	// afin qu'elle puisse afficher le formulaire toute seule
-    	return $this->render('Roxanne7UserBundle:Default:register.html.twig', array(
-    			'form' => $form->createView(),
-    			));
-    }
-    
-    
-    /*
-    public function addUser()
-    {
-    	$user = new User();
-    	$user->setpseudo('Roxanne7_');
-    	$user->setpass('1234');
-    	//$user->setpass(password_hash('*77taru77*', PASSWORD_DEFAULT));
-    	$user->setmail('roxanne7_@collectifembriagoun.com1');
-    	$user->setcle(md5(microtime(TRUE)*100000));
-    	
-    	
-    	$profile = new Profile();
-    	$profile->setavatar('http://sdz-upload.s3.amazonaws.com/prod/upload/job-de-reve.jpg');
-    	$profile->setsex('M');
-    	
-    	$user->setprofile($profile);
-    	
-    	// On récupère l'EntityManager
-    	$em = $this->getDoctrine()->getManager();
-    	
-    	
-    	// Étape 1 : On « persiste » l'entité
-    	$em->persist($user);
-    	
-    	// Étape 2 : On « flush » tout ce qui a été persisté avant
-    	$em->flush();
-    	
-    }
-    */
+
     public function getUser()
     {
     	

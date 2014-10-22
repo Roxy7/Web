@@ -65,16 +65,16 @@ class User
     private $modificationDate;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="external", type="integer")
+     * @ORM\Column(name="external", type="boolean")
      */
     private $external;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="wantMail", type="integer")
+     * @ORM\Column(name="wantMail", type="boolean")
      */
     private $wantMail;
 
@@ -86,9 +86,9 @@ class User
     private $cle;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="active", type="integer")
+     * @ORM\Column(name="active", type="boolean")
      */
     private $active;
 
@@ -217,51 +217,6 @@ class User
         return $this->modificationDate;
     }
 
-    /**
-     * Set external
-     *
-     * @param integer $external
-     * @return User
-     */
-    public function setExternal($external)
-    {
-        $this->external = $external;
-
-        return $this;
-    }
-
-    /**
-     * Get external
-     *
-     * @return integer 
-     */
-    public function getExternal()
-    {
-        return $this->external;
-    }
-
-    /**
-     * Set wantMail
-     *
-     * @param integer $wantMail
-     * @return User
-     */
-    public function setWantMail($wantMail)
-    {
-        $this->wantMail = $wantMail;
-
-        return $this;
-    }
-
-    /**
-     * Get wantMail
-     *
-     * @return integer 
-     */
-    public function getWantMail()
-    {
-        return $this->wantMail;
-    }
 
     /**
      * Set cle
@@ -286,36 +241,15 @@ class User
         return $this->cle;
     }
 
-    /**
-     * Set active
-     *
-     * @param integer $active
-     * @return User
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get active
-     *
-     * @return integer 
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
     
     public function __construct()
     {
     	$this->creationDate = new \Datetime();
-    	$this->modificationDate = new \Datetime();
-    	$this->active = 0;
-    	$this->wantMail = 1;
-    	$this->external = 0;
+    	$this->modificationDate = $this->creationDate;
+    	$this->active = false;
+    	$this->wantMail = true;
+    	$this->external = false;
+    	$this->cle = md5(microtime(TRUE)*100000);
      }
 
     /**
@@ -347,8 +281,73 @@ class User
     public function modificationDate(){
     	$this->setModificationDate(new \Datetime());
     }
-    
 
+    /**
+     * Set external
+     *
+     * @param boolean $external
+     * @return User
+     */
+    public function setExternal($external)
+    {
+        $this->external = $external;
 
+        return $this;
+    }
+
+    /**
+     * Get external
+     *
+     * @return boolean 
+     */
+    public function getExternal()
+    {
+        return $this->external;
+    }
+
+    /**
+     * Set wantMail
+     *
+     * @param boolean $wantMail
+     * @return User
+     */
+    public function setWantMail($wantMail)
+    {
+        $this->wantMail = $wantMail;
+
+        return $this;
+    }
+
+    /**
+     * Get wantMail
+     *
+     * @return boolean 
+     */
+    public function getWantMail()
+    {
+        return $this->wantMail;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return User
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
 }
-
