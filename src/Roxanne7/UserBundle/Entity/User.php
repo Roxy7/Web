@@ -3,6 +3,7 @@
 namespace Roxanne7\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -33,6 +34,8 @@ class User
      * @var string
      *
      * @ORM\Column(name="pseudo", type="string", length=100)
+     * @Assert\Length(min=3, minMessage="Le pseudo doit faire au moins {{ limit }} caractères.")
+     * @Assert\Length(max=3, maxMessage="Le pseudo doit faire au plus {{ limit }} caractères.")
      */
     private $pseudo;
 
@@ -40,6 +43,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="pass", type="string", length=100)
+     * @Assert\NotBlank
      */
     private $pass;
 
@@ -47,6 +51,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255, unique=true)
+     * @Assert\Email
      */
     private $mail;
 
