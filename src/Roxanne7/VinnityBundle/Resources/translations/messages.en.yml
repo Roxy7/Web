@@ -1,0 +1,5 @@
+vinnity:
+  translation:
+    hello: Hello
+    good: 'how are you ?'
+hello: Hello %name%!

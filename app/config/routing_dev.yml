@@ -13,3 +13,6 @@ _configurator:
 _main:
     resource: routing.yml
 
+roxanne7_vinnity_translation:
+    path:     /{_locale}/traduction/{name}
+    defaults: { _controller: "Roxanne7VinnityBundle:Global:translation" }

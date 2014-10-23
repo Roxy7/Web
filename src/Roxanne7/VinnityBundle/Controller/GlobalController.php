@@ -21,4 +21,11 @@ class GlobalController extends Controller
     	return $this->render('Roxanne7VinnityBundle:Design:welcome.html.twig');
     }
     
+    public function translationAction($name)
+    {
+    	return $this->render('Roxanne7VinnityBundle:Design:translation.html.twig', array(
+    			'name' => $name
+    	));
+    }
+    
 }
