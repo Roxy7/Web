@@ -1,0 +1,7 @@
+Roxanne7_user_register:
+  path: /register
+  defaults:  {_controller: "Roxanne7UserBundle:UserManagement:Register" }
+  
+Roxanne7_user_profile:
+  path: /profile
+  defaults:  {_controller: "Roxanne7UserBundle:UserManagement:Profile" }

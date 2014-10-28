@@ -73,7 +73,13 @@ fos_user:
   db_driver:  orm
   firewall_name: main
   user_class: Roxanne7\UserBundle\Entity\User
+  profile:
+    form:
+      type: roxanne7_user_profile
   registration:
-        form:
-            type: roxanne7_user_registration
+    confirmation:
+      enabled: true
+      template:   FOSUserBundle:Registration:email.txt.twig
+    form:
+      type: roxanne7_user_registration
               
