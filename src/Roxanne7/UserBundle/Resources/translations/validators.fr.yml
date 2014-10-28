@@ -1,4 +1,25 @@
-password:
-    length:
-        short: "Vous avez entré {{ value }} caractères. Or, le mot de passe ne peut en comporter moins de {{ limit }}"
-        long:  "Vous avez entré {{ value }} caractères. Or, le mot de passe ne peut en comporter plus de {{ limit }}"
+fos_user:
+    username:
+        already_used: Le nom d'utilisateur est déjà utilisé test
+        blank: Entrez un nom d'utilisateur s'il vous plait test
+        short: "[-Inf,Inf]Le nom d'utilisateur est trop court test"
+        long: "[-Inf,Inf]Le nom d'utilisateur est trop long test"
+    email:
+        already_used: L'adresse e-mail est déjà utilisée test
+        blank: Entrez une adresse e-mail s'il vous plait test
+        short: "[-Inf,Inf]L'adresse e-mail est trop courte test"
+        long: "[-Inf,Inf]L'adresse e-mail est trop longue test"
+        invalid: L'adresse e-mail est invalide test
+    password:
+        blank: Entrez un mot de passe s'il vous plait test
+        short: "[-Inf,Inf]Le mot de passe est trop court test"
+        mismatch: Les deux mots de passe ne sont pas identiques test
+    new_password:
+        blank: Entrez un nouveau mot de passe s'il vous plait test
+        short: "[-Inf,Inf]Le nouveau mot de passe est trop court test"
+    current_password:
+        invalid: Le mot de passe est invalide test
+    group:
+        blank: Entrez un nom s'il vous plait test
+        short: "[-Inf,Inf]Le nom est trop court test"
+        long: "[-Inf,Inf]Le nom est trop long test"

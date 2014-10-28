@@ -2,4 +2,4 @@ vinnity:
   translation:
     hello: Bonjour
     good: 'comment ca va ?'
-hello: Bonjour %name% !
+hello: Bonjour

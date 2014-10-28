@@ -1,29 +1,18 @@
-Roxanne7_vinnity_index1:
-  path: /
-  defaults:  {_controller: "Roxanne7VinnityBundle:Global:welcome" }
-
 roxanne7_vinnity:
     resource: "@Roxanne7VinnityBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/
     requirements:
-        _locale: en|fr # les locales disponibles, séparées par des pipes « | »
+      _locale: "|en|fr" # les locales disponibles, séparées par des pipes « | »
 
 roxanne7_user:
     resource: "@Roxanne7UserBundle/Resources/config/routing.yml"
     prefix:   /{_locale}/user
     requirements:
-        _locale: en|fr # les locales disponibles, séparées par des pipes « | »
+        _locale: "|en|fr" # les locales disponibles, séparées par des pipes « | »
     
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
-fos_user_profile:
-    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /profile
-
-fos_user_register:
-    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
-    prefix: /register
 
 fos_user_resetting:
     resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"

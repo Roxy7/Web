@@ -1,3 +1,9 @@
 # Form field labels
 form:
     name: "Votre nom :"
+    email: "email :"
+    username: "username :"
+    password: "Mot de pass :"
+    password_confirmation: "Confirmation de mot de passe :"
+    password_missmatch: "Mauvaise confirmation !"
+    

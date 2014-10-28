@@ -58,7 +58,6 @@ class UserManagementController extends Controller
 		}
 		/** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
-
         $event = new GetResponseUserEvent($user, $request);
         $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
 
@@ -67,18 +66,12 @@ class UserManagementController extends Controller
         }
 
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
-
         $form = $this->get('form.factory')->create(new ProfileFormType, $user);
-
-
         $form->setData($user);
-
-        
 		$form->handleRequest($request);
-			
 		if ($form->isValid()) {
             /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
-            $userManager = $this->get('fos_user.user_manager');
+            $userManager = $this->getDoctrine()->getManager();
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
